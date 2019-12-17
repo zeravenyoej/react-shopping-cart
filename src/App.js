@@ -6,6 +6,8 @@ import data from './data';
 import Navigation from './components/Navigation';
 import Products from './components/Products';
 import ShoppingCart from './components/ShoppingCart';
+
+//Contexts
 import { ProductContext } from './contexts/ProductContext';
 import { CartContext } from './contexts/CartContext';
 
@@ -14,16 +16,16 @@ function App() {
 	const [cart, setCart] = useState([]);
 
 	const addItem = item => {
-		// add the given item to the cart
-		setCart([
-			...cart,
-			item
-		])
+		setCart([...cart, item])
+	};
+
+	const removeItem = selectedProduct => {
+		return setCart(cart.filter(item=>item.id !== selectedProduct.id))
 	};
 
 	return (
 		<ProductContext.Provider value={{ products, addItem }}>
-			<CartContext.Provider value={{cart}}>
+			<CartContext.Provider value={{ cart, removeItem }}>
 				<div className="App">
 					<Navigation cart={cart} />
 					
