@@ -17,7 +17,7 @@ function App() {
 		// add the given item to the cart
 		setCart([
 			...cart,
-			{item}
+			item
 		])
 	};
 
